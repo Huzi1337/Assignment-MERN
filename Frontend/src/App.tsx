@@ -37,26 +37,38 @@ function App() {
   const [relevantLines, setRelevantLines] = useState<undefined | string[]>(
     undefined
   );
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const relevantLinesHandler: RelevantLinesHandler = (text) => {
+    if (!text) return setError(true);
     setRelevantLines(text);
   };
 
   const onSubmit = async (values: IFormData) => {
     try {
-      console.log(values);
+      setIsLoading(true);
+      setError(false);
       const response = await submitLog(URL, values);
-
+      setIsLoading(false);
       return relevantLinesHandler(response?.relevantLines);
     } catch (err) {
-      console.log(err);
+      console.log(error);
     }
   };
 
   return (
     <div className="App">
       <UserForm onSubmit={onSubmit}></UserForm>
-      {relevantLines && <TextContainer text={relevantLines} />}
+      {isLoading && <TextContainer text={["Loading"]} />}
+      {error && (
+        <TextContainer
+          text={["An error has occurred. No valid log lines entered."]}
+        />
+      )}
+      {relevantLines && !isLoading && !error && (
+        <TextContainer text={relevantLines} />
+      )}
     </div>
   );
 }
