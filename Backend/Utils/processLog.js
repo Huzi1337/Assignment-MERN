@@ -1,4 +1,5 @@
-import { ERROR, WARNING, INFORMATION, LineTypePos } from "./templateConfig";
+import { ERROR, WARNING, INFORMATION, LineTypePos } from "./templateConfig.js";
+import HttpError from "../models/httpError.js";
 
 export const processLog = (log) => {
   const unsortedLog = log
@@ -32,6 +33,7 @@ export const compliesWithTemplate = (line) => {
       return false;
   }
 };
+//should check for integer
 
 const getTimeStamp = (line) => {
   const words = line.split(" ");
@@ -43,7 +45,10 @@ const getTimeStamp = (line) => {
     case ERROR.Tag:
       return +words[ERROR.TimeStampPos];
     default:
-      return null;
+      throw new HttpError(
+        "Can't check for timestamp on an untagged line.",
+        500
+      );
   }
 };
 

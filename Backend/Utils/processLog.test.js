@@ -13,6 +13,7 @@ const testInput = [
   "This is a faulty line",
   "E 0 2147 A something in the sky.",
   "W faulty systemd[1]: Starting Load AppArmor profiles managed internally by snapd...",
+  "",
 ];
 
 const correctOutput = [
@@ -30,19 +31,19 @@ describe("Template validation", () => {
   it(`shouldn't accept a line with ${INFORMATION.Tag} without a timestamp at index ${INFORMATION.TimeStampPos}`, () => {
     expect(compliesWithTemplate(testInput[1])).toEqual(false);
   });
-  it(`shouldn't accept a line with ${WARNING.Tag} without a timestamp at index ${WARNING.TimeStampPos}`, () => {
-    expect(compliesWithTemplate(testInput[9])).toEqual(false);
+  it(`shouldn't accept a line with ${ERROR.Tag} with severity more than ${ERROR.SeverityHighBound}`, () => {
+    expect(compliesWithTemplate(testInput[5])).toEqual(false);
   });
   it(`shouldn't accept a line with ${ERROR.Tag} without a timestamp at index ${ERROR.TimeStampPos}`, () => {
     expect(compliesWithTemplate(testInput[6])).toEqual(false);
   });
-  it(`shouldn't accept a line with ${ERROR.Tag} with severity more than ${ERROR.SeverityHighBound}`, () => {
-    expect(compliesWithTemplate(testInput[5])).toEqual(false);
+  it(`shouldn't accept a line not starting with a ${INFORMATION.Tag}, ${WARNING.Tag} or ${ERROR.Tag}`, () => {
+    expect(compliesWithTemplate(testInput[7])).toEqual(false);
   });
   it(`shouldn't accept a line with ${ERROR.Tag} with severity less than ${ERROR.SeverityLowBound}`, () => {
     expect(compliesWithTemplate(testInput[8])).toEqual(false);
   });
-  it(`shouldn't accept a line not starting with a ${INFORMATION.Tag}, ${WARNING.Tag} or ${ERROR.Tag}`, () => {
-    expect(compliesWithTemplate(testInput[7])).toEqual(false);
+  it(`shouldn't accept a line with ${WARNING.Tag} without a timestamp at index ${WARNING.TimeStampPos}`, () => {
+    expect(compliesWithTemplate(testInput[9])).toEqual(false);
   });
 });
