@@ -1,0 +1,19 @@
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 70vh;
+  padding: 10px;
+  padding-top: 0px;
+  background-color: black;
+  overflow: auto;
+  p {
+    text-align: left;
+    white-space: pre;
+    font-family: "Ubuntu", sans-serif;
+    margin: 0;
+  }
+}
