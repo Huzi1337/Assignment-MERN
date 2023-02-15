@@ -6,7 +6,7 @@ const APIURL = "http://localhost:8000/api/logs";
 describe("log submission", () => {
   beforeEach(() => {
     cy.intercept(APIURL, {
-      relevantLines: ["E 52 231 asdasdasdasda", "E 56 123 aseasdas"],
+      fixture: "example.json",
     });
   });
 

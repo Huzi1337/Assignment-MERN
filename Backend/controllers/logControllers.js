@@ -13,6 +13,11 @@ export const createLog = async (req, res, next) => {
   }
 
   const { name, email, log } = req.body;
+  console.log(name && email && log);
+  if (!(name && email && log)) {
+    const error = new HttpError("Request body properties missing.", 400);
+    return next(error);
+  }
 
   const createdLog = new LogModel({
     name,

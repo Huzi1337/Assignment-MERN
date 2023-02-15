@@ -16,13 +16,20 @@ export const compliesWithTemplate = (line) => {
   const words = line.split(" ");
   switch (words[LineTypePos]) {
     case INFORMATION.Tag:
-      return !isNaN(words[INFORMATION.TimeStampPos]);
+      return (
+        !isNaN(words[INFORMATION.TimeStampPos]) &&
+        Number.isInteger(+words[INFORMATION.TimeStampPos])
+      );
     case WARNING.Tag:
-      return !isNaN(words[WARNING.TimeStampPos]);
+      return (
+        !isNaN(words[WARNING.TimeStampPos]) &&
+        Number.isInteger(+words[INFORMATION.TimeStampPos])
+      );
     case ERROR.Tag:
       return (
         !isNaN(words[ERROR.TimeStampPos]) &&
         !isNaN(words[ERROR.SeverityPos]) &&
+        Number.isInteger(+words[INFORMATION.TimeStampPos]) &&
         checkBoundaries(
           +words[ERROR.SeverityPos],
           ERROR.SeverityLowBound,

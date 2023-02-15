@@ -56,9 +56,7 @@ function App() {
   return (
     <div className="App">
       <UserForm onSubmit={onSubmit}></UserForm>
-      {relevantLines && relevantLines.length > 0 && (
-        <TextContainer text={relevantLines} />
-      )}
+      {relevantLines && <TextContainer text={relevantLines} />}
     </div>
   );
 }
