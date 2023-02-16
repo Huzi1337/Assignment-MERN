@@ -31,7 +31,8 @@ export const createLog = async (req, res, next) => {
     let errorMsg = "Creating log failed.";
     let errorStatus = 500;
     if (createdLog.log.length === 0) {
-      errorMsg += " The log does not contain any valid lines.";
+      errorMsg +=
+        "\nThe log does not contain any valid lines.\nExample valid log lines:\nI 6 Nothing to report\nW 7 Out for lunch\nE 42 21 ERROR: Something has gone horribly wrong\nI 52 Something went wrong while I was out for lunch";
       errorStatus = 400;
     }
     const error = new HttpError(errorMsg, errorStatus);

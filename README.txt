@@ -11,13 +11,14 @@ http://localhost:5173
 3. Run commands listed below:
     npm install
     npm start
-4. Go to "MERN App"/Frontend directory.
-5. Make sure nothing is running on http://localhost:4173
-5. Run commands listed below:
+4. Boot up another terminal.
+5. Go to "MERN App"/Frontend directory.
+6. Make sure nothing is running on http://localhost:4173
+7. Run commands listed below:
     npm install
     npm run build
     npm run preview
-6. The built application will run on http://localhost:4173 by default.
+8. The built application will run on http://localhost:4173 by default.
 
 //Testing the Backend
 1. Go to "MERN App"/Backend directory
@@ -25,8 +26,9 @@ http://localhost:5173
 
 //Testing the Frontend
 1. Go to "MERN App"/Frontend directory
-2.1. For unit and integration test run:
+2. For unit and integration test run:
      npm test.
-2.2. For e2e test run: 
+3.1. For e2e test run: 
      npm run dev
+3.2. Boot up another terminal at the same directory and run:
      npx cypress run
