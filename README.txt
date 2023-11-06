@@ -32,3 +32,28 @@ http://localhost:5173
      npm run dev
 3.2. Boot up another terminal at the same directory and run:
      npx cypress run
+
+
+//Task description
+The application should allow the user to submit a log report by filling in
+a form with the following fields. The backend will then process the log
+that the user submits and save the ᴘʀᴏᴄᴇꜱꜱᴇᴅ ʟᴏɢ along with all the
+other form fields in a database. It will then display a list of ʀᴇʟᴇᴠᴀɴᴛ
+ʟɪɴᴇꜱ to the user using monospace font.
+
+Log
+The log can have any number of lines. Each line begins with either E for
+errors, W for warnings and I for informational messages. Error messages
+then have a number indicating the severity of the error, between 1 and
+100. All types of messages then have an integer timestamp and a textual
+content which runs until the end of the line. Here are a few valid lines:
+
+I 6 Nothing to report
+W 7 Out for lunch
+E 42 21 ERROR: Something has gone horribly wrong
+I 52 Something went wrong while I was out for lunch
+
+A ᴘʀᴏᴄᴇꜱꜱᴇᴅ ʟᴏɢ only has lines which conform to the template
+described above (other lines are discarded) and is sorted with the
+timestamps in ascending order.
+A ʀᴇʟᴇᴠᴀɴᴛ ʟɪɴᴇ is an error line with severity of at least 50.
